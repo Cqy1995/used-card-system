@@ -95,6 +95,14 @@ const routes = [
         }
       },
       {
+        path: '/serviceManagent/insuranceDetail',
+        component: () => import('../views/serviceManagent/insuranceDetail'),
+        meta: {
+          navShow: true,
+          title: '购买保险'
+        }
+      },
+      {
         path: '/serviceManagent/serve',
         component: () => import('../views/serviceManagent/serve'),
         meta: {
