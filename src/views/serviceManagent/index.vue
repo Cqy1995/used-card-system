@@ -1,5 +1,6 @@
 <template>
   <div>
+    <van-nav-bar title="服务管理" />
     <van-grid column-num="2">
       <van-grid-item icon="umbrella-circle" text="保险" to="/serviceManagent/insurance" />
       <van-grid-item icon="service" text="服务" to="/serviceManagent/serve" />

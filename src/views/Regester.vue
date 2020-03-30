@@ -1,6 +1,6 @@
 <template>
   <div class="regester">
-    <van-nav-bar title="注册" left-arrow />
+    <van-nav-bar title="注册" @click-left="onClickLeft" left-arrow />
     <van-cell-group class="cardGroups">
       <van-field
         :value="username"
@@ -29,7 +29,10 @@ export default {
     onChange(event) {
       // event.detail 为当前输入的值
       console.log(event.detail);
-    }
+    },
+    onClickLeft() {
+      this.$router.push("/login");
+    },
   }
 };
 </script>
