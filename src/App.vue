@@ -20,11 +20,20 @@ export default {
     return {active:0,showto:true};
   },
   mounted() {
-    console.log(this.$route.path);
+    console.log(this.$route);
     
     console.log(window.location.href);
-    
-    if(this.$route.path=='/login' || this.$route.path=='/regester'){
+    function getCaption(obj){
+    var index=obj.lastIndexOf("\#/");
+    obj=obj.substring(index+1,obj.length);
+//  console.log(obj);
+    return obj;
+}
+var str=" 执法办案流程-立案审批";
+var abc = getCaption(window.location.href);
+console.log(abc);
+
+    if(abc=='/Login' || abc=='/regester'){
       this.showto = false
 
     }else{

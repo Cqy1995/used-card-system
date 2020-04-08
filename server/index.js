@@ -9,11 +9,23 @@ const bodyParser = require('body-parser')
     // 引入Express
 const express = require('express');
 const app = express();
+const cors = require('cors');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(api);
-// 访问静态资源文件 这里是访问所有dist目录下的静态资源文件
+app.use(cors({
+    origin: ['http://localhost:8080'],
+    methods: ['GET', 'POST'],
+}));
+//跨域问题解决方案
+app.all('*', function(req, res, next) {
+        res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
+        res.header('Access-Control-Allow-Headers', 'Content-Type');
+        res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');　
+        next();　
+    })
+    // 访问静态资源文件 这里是访问所有dist目录下的静态资源文件
 app.use(express.static(path.resolve(__dirname, '../dist')))
     // 因为是单页应用 所有请求都走/dist/index.html
 app.get('*', function(req, res) {
