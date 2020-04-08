@@ -10,10 +10,6 @@ const bodyParser = require('body-parser')
 const express = require('express');
 const app = express();
 const cors = require('cors');
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(api);
 app.use(cors({
     origin: ['http://localhost:8080'],
     methods: ['GET', 'POST'],
@@ -28,10 +24,14 @@ app.all('*', function(req, res, next) {
     // 访问静态资源文件 这里是访问所有dist目录下的静态资源文件
 app.use(express.static(path.resolve(__dirname, '../dist')))
     // 因为是单页应用 所有请求都走/dist/index.html
-app.get('*', function(req, res) {
-        const html = fs.readFileSync(path.resolve(__dirname, '../dist/index.html'), 'utf-8')
-        res.send(html)
-    })
-    // 监听8088端口
+app.get('/', function(req, res) {
+    const html = fs.readFileSync(path.resolve(__dirname, '../dist/index.html'), 'utf-8')
+    res.send(html)
+})
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(api);
+
+// 监听8088端口
 app.listen(8088);
 console.log('success listen…………');

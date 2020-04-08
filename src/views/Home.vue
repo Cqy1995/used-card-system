@@ -40,8 +40,8 @@ export default {
   data() {
     return {
       images: [
-        "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585420340538&di=5183502e1db05c0d4828ca1db8b6ddc8&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2Fb%2F5563d2fb8f2c0.jpg",
-        "http://img2.imgtn.bdimg.com/it/u=2525740924,1398336316&fm=26&gp=0.jpg"
+        "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1586348536582&di=93f3e9a4162d4c781d04d1fd81fa3324&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2Fc%2F5487dacd7489e.jpg",
+        "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1586348556481&di=6858963c0bc5b6fb023e8ef4b11f4710&imgtype=0&src=http%3A%2F%2Fdik.img.kttpdq.com%2Fpic%2F103%2F71778%2F1b68f879af668780.jpg"
       ],
       active:0
     };
@@ -51,5 +51,10 @@ export default {
 <style lang="scss" scoped>
 .homeBanner {
   height: 4rem;
+}
+</style>
+<style lang="scss">
+#app .van-swipe__indicators{
+  bottom: 0.4rem!important;
 }
 </style>

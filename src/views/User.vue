@@ -2,7 +2,7 @@
   <div>
     <van-nav-bar title="个人中心" />
     <van-grid center class="userTop" :border="false">
-      <van-grid-item icon="https://b.yzcdn.cn/vant/icon-demo-1126.png" text="小楼一夜听春雨" />
+      <van-grid-item icon="https://b.yzcdn.cn/vant/icon-demo-1126.png" :text="actName" />
     </van-grid>
     <van-cell-group class="userList">
       <van-cell title="预约管理" value="&gt;"/>
@@ -17,14 +17,29 @@
 </template>
 
 <script>
-export default {};
+import Cookies from 'js-cookie'
+export default {
+  data() {
+    return{
+    actName: ""
+
+    }
+  },
+  mounted() {
+    console.log(Cookies.get("userId"));
+    console.log(Cookies.get("userName"));
+    actName: "123"
+    this.actName = Cookies.get("userName")
+    
+  }
+};
 </script>
 
 <style lang="scss" scoped>
 .userTop {
   display: block;
   margin: 0 auto;
-  padding: 1.2rem;
+  padding: 0.8rem;
 }
 .userList{
   text-align: left;
