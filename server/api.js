@@ -39,4 +39,27 @@ router.get('/api/login/getAccount', async(req, res) => {
     // });
 });
 
+router.get('/api/carlist/getcarlist', async(req, res) => {
+    let ret = await models.carModel.findOne({
+        typeId: req.query.typeid
+    });
+    res.send(ret);
+})
+
+router.get('/api/carlist/createAccount', (req, res) => {
+    let carList = [{
+        typeId: req.query.typeid,
+        typeName: req.query.typename
+    }]
+    let itemarry = await models.carModel.
+    models.carModel.insertMany(carList, function(err, result) {
+        if (err) {
+            res.send(err);
+            console.log("数据添加成功:", result);
+        } else {
+            res.send(result);
+        }
+
+    })
+});
 module.exports = router;

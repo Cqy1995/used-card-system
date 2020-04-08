@@ -56,6 +56,17 @@ export default {
       this.activeId = event.id;
       this.$router.push("/carlist");
     }
+  },
+  mounted() {
+    this.$axios
+      .get("http://localhost:8088/api/carlist/getcarlist", {
+        params: {
+          typeid: 1
+        }
+      })
+      .then(res => {
+        console.log(res);
+      });
   }
 };
 </script>
