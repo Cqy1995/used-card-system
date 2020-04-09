@@ -38,5 +38,10 @@ router.get('/api/login/getAccount', async(req, res) => {
     //     }
     // });
 });
-
+// 获取推荐商品
+router.get('/api/login/getTjShop', async(req, res) => {
+    // 通过模型去查找数据库
+    let ret = await models.shopModel.find();
+    res.send(ret);
+});
 module.exports = router;

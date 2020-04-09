@@ -3,8 +3,8 @@
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
-    <van-tabbar route v-show="showto"  v-model="active" >
-      <van-tabbar-item replace to="/" icon="home-o" >首页</van-tabbar-item>
+    <van-tabbar route v-show="showto"  v-model="active" active-color="rgb(216, 30, 6)">
+      <van-tabbar-item replace to="/home" icon="home-o" >首页</van-tabbar-item>
       <van-tabbar-item replace to="/shopcar" icon="shopping-cart-o">购物车</van-tabbar-item>
       <van-tabbar-item replace to="/serviceManagent" icon="newspaper-o">服务管理</van-tabbar-item>
       <van-tabbar-item replace to="/user" icon="contact">我的</van-tabbar-item>

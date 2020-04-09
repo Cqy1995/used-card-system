@@ -104,6 +104,11 @@ a {
 a:hover {
     text-decoration: none;
 }
+
 html {
     font-size: calc(100 / 750 * 100vw);
+}
+
+.van-nav-bar .van-icon {
+    color: red !important;
 }

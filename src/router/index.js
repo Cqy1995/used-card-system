@@ -1,13 +1,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
 const routes = [{
-        path: '/',
+        path: '/home',
         name: 'Home',
-        component: Home
+        component: () =>
+            import ('../views/Home.vue')
     },
     {
         path: '/login',
@@ -16,13 +16,14 @@ const routes = [{
             import ('../views/Login.vue')
     },
     {
-        path: '/regester',
+        path: '/',
         name: 'regester',
         component: () =>
             import ('../views/Regester.vue')
     },
     {
-        path: '/oldcarmsg',
+        path: '/oldcarmsg/:id',
+        name: 'oldcar',
         component: () =>
             import ('../views/OldcarMsg.vue')
     },
@@ -37,6 +38,11 @@ const routes = [{
             import ('../views/Yysq.vue')
     },
     {
+        path: '/sqjy',
+        component: () =>
+            import ('../views/Sqjy.vue')
+    },
+    {
         path: '/user',
         component: () =>
             import ('../views/User.vue')
@@ -45,6 +51,11 @@ const routes = [{
         path: '/shopcar',
         component: () =>
             import ('../views/ShoppingCar.vue')
+    },
+    {
+        path: '/userlist',
+        component: () =>
+            import ('../views/userList.vue')
     },
     {
         path: '/serviceManagent',

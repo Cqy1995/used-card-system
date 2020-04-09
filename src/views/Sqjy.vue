@@ -1,8 +1,8 @@
 <template>
   <div class="yysq">
-    <van-nav-bar title="预约申请" @click-left="onClickLeft" left-arrow />
-    <textarea placeholder="请输入200字以内" v-model="yy"></textarea>
-    <van-button type="default" class="subSq" @click="Toyy">立即预约</van-button>
+    <van-nav-bar title="禁用申请" @click-left="onClickLeft" left-arrow />
+    <textarea placeholder="请输入200字以内" v-model="sq"></textarea>
+    <van-button type="default" class="subSq" @click="Tojy">申请禁用</van-button>
   </div>
 </template>
 
@@ -10,19 +10,20 @@
 export default {
   data() {
     return{
-      yy: ''
+      sq: ''
     }
   },
   methods: {
     onClickLeft() {
       this.$router.push("/");
     },
-    Toyy() {
-      if(this.yy==""){
+    Tojy() {
+        if(this.sq==""){
           this.$toast("请填入信息")
         }else {
           this.$router.push("/");
         }
+        
     }
   }
 };

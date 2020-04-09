@@ -1,18 +1,27 @@
 <template>
-  <div>
+  <div class="user">
     <van-nav-bar title="个人中心" />
     <van-grid center class="userTop" :border="false">
-      <van-grid-item icon="https://b.yzcdn.cn/vant/icon-demo-1126.png" :text="actName" />
+      <van-grid-item icon="http://img5.imgtn.bdimg.com/it/u=4218530414,2263115521&fm=26&gp=0.jpg" :text="actName" />
     </van-grid>
-    <van-cell-group class="userList">
-      <van-cell title="预约管理" value="&gt;"/>
-      <van-cell title="订单管理" value="&gt;" />
-      <van-cell title="保险管理" value="&gt;" />
-      <van-cell title="服务管理" value="&gt;" />
-      <van-cell title="通知管理" value="&gt;" />
-      <van-cell title="砍价管理" value="&gt;" />
+    <van-cell-group class="userList" v-show="userorGl==true">
+      <van-cell title="预约详情" to="/userlist" value="&gt;"/>
+      <van-cell title="订单详情" to="/userlist" value="&gt;" />
+      <van-cell title="保险详情" to="/userlist" value="&gt;" />
+      <van-cell title="服务详情" to="/userlist" value="&gt;" />
+      <van-cell title="通知详情" to="/userlist" value="&gt;" />
+      <van-cell title="砍价详情" to="/userlist" value="&gt;" />
+      <van-cell title="修改个人信息" to="/userlist" value="&gt;" />
     </van-cell-group>
-    <van-button class="cardBtn" type="default" size="normal">退出登录</van-button>
+    <van-cell-group class="userList" v-show="userorGl==false">
+      <van-cell title="预约管理" to="/userlist" value="&gt;"/>
+      <van-cell title="订单管理" to="/userlist" value="&gt;" />
+      <van-cell title="保险管理" to="/userlist" value="&gt;" />
+      <van-cell title="服务管理" to="/userlist" value="&gt;" />
+      <van-cell title="通知管理" to="/userlist" value="&gt;" />
+      
+    </van-cell-group>
+    <van-button class="cardBtn" type="default" size="normal" @click="ToLgoin">退出登录</van-button>
   </div>
 </template>
 
@@ -21,16 +30,29 @@ import Cookies from 'js-cookie'
 export default {
   data() {
     return{
-    actName: ""
+    actName: "小楼一夜听春雨",
+    userorGl: true
 
     }
   },
   mounted() {
     console.log(Cookies.get("userId"));
     console.log(Cookies.get("userName"));
-    actName: "123"
-    this.actName = Cookies.get("userName")
-    
+    if(Cookies.get("userName")==""||Cookies.get("userName")==undefined) {
+      this.actName = "小楼一夜听春雨"
+    }else {
+      this.actName = Cookies.get("userName")
+    }
+    if(Cookies.get("userId")=="3") {
+      this.userorGl = false
+    }else {
+      this.userorGl = true
+    }
+  },
+  methods: {
+    ToLgoin() {
+      this.$router.push("/login")
+    }
   }
 };
 </script>
@@ -39,9 +61,14 @@ export default {
 .userTop {
   display: block;
   margin: 0 auto;
-  padding: 0.8rem;
+  padding: 0.3rem;
 }
 .userList{
   text-align: left;
+}
+</style>
+<style lang="scss">
+.user .van-grid-item__icon{
+  font-size: 100px;
 }
 </style>

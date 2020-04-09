@@ -1,50 +1,27 @@
 <template>
   <div class="shoppingcar">
     <van-nav-bar title="购物车" />
-    <van-tabs v-model="active">
-      <van-tab title="劳斯莱斯">
-        <van-card
-          num="2"
-          price="2.00"
-          desc="家用6座以下为950元；家用6座以上为1100元"
-          thumb="https://img.yzcdn.cn/vant/ipad.jpeg"
-        >
-          <template #tags>
-          </template>
-          <template #footer>
-            <van-button size="mini" @click="showPopup">立即购买</van-button>
-          </template>
-        </van-card>
-      </van-tab>
-      <van-tab title="桑塔纳">
-        <van-card
-          num="2"
-          price="2.00"
-          desc="基础保费+裸车价格×1.0880%"
-          thumb="https://img.yzcdn.cn/vant/ipad.jpeg"
-        >
-          <template #tags>
-          </template>
-          <template #footer>
-            <van-button size="mini" @click="showPopup">立即购买</van-button>
-          </template>
-        </van-card>
-        <van-card
-          num="2"
-          price="2.00"
-          desc="赔付额度5-100万，保费价格700-2200元不等"
-          title="第三方责任险"
-          thumb="https://img.yzcdn.cn/vant/ipad.jpeg"
-        >
-          <template #tags>
-            <van-tag plain type="danger">商业保险</van-tag>
-          </template>
-          <template #footer>
-            <van-button size="mini" @click="showPopup">立即投保</van-button>
-          </template>
-        </van-card>
-      </van-tab>
-    </van-tabs>
+    <van-card
+        price="6.79万"
+        desc="2016款 蓝标 1.5T自动两驱精英型"
+        title="哈弗H6"
+        thumb="http://e.hiphotos.baidu.com/image/h%3D300/sign=cd92f6ddf903738dc14a0a22831ab073/08f790529822720e78606b8774cb0a46f21fab25.jpg"
+      >
+      </van-card>
+      <van-card
+        price="6.79万"
+        desc="2017款 蓝标 1.5T自动舒适型"
+        title="力帆轩朗"
+        thumb="http://img4.imgtn.bdimg.com/it/u=3331455421,259079271&fm=26&gp=0.jpg"
+      >
+      </van-card>
+      <van-card
+        price="6.79万"
+        desc="2013款 蓝标 1.8TSI标配型"
+        title="大众夏朗"
+        thumb="http://img4.imgtn.bdimg.com/it/u=2388327870,2514168806&fm=26&gp=0.jpg"
+      >
+      </van-card>
   </div>
 </template>
 
@@ -64,5 +41,11 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+.shoppingcar{
+  .van-card__content{
+  text-align: left;
+  margin-left: 0.2rem;
+}
+}
 </style>

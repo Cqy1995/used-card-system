@@ -6,11 +6,11 @@
         <img v-lazy="image" width="100%" class="homeBanner" />
       </van-swipe-item>
     </van-swipe>
-    <van-grid column-num="2">
-      <van-grid-item icon="photo-o" text="二手车分类管理" to="/oldcarmsg"/>
-      <van-grid-item icon="photo-o" text="二手车品牌管理" to="/oldcarmsg"/>
-      <van-grid-item icon="photo-o" text="二手车颜色管理" to="/oldcarmsg"/>
-      <van-grid-item icon="photo-o" text="二手车车辆管理" to="/oldcarmsg"/>
+    <van-grid column-num="2" active-color="rgb(216, 30, 6)">
+      <van-grid-item icon="photo-o" text="二手车分类管理" to="/oldcarmsg" />
+      <van-grid-item icon="photo-o" text="二手车品牌管理" to="/oldcarmsg" />
+      <van-grid-item icon="photo-o" text="二手车颜色管理" to="/oldcarmsg" />
+      <van-grid-item icon="photo-o" text="二手车车辆管理" to="/oldcarmsg" />
     </van-grid>
   </div>
 </template>
@@ -33,5 +33,10 @@ export default {
 <style lang="scss" scoped>
 .homeBanner {
   height: 4rem;
+}
+</style>
+<style lang="scss">
+.van-tabbar-item--active {
+  color: rgb(216, 30, 6);
 }
 </style>
