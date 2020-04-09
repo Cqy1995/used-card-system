@@ -113,7 +113,23 @@
         <p style="font-size:12px;margin-top:0.1rem;color:gray">预约管理</p>
       </van-grid-item>
       <van-grid-item use-slot to="/sqjy">
-        <svg t="1586422023576" class="icon" viewBox="0 0 1024 1024" version="1.1" style="width:100%;height:0.6rem;" xmlns="http://www.w3.org/2000/svg" p-id="2012" width="200" height="200"><path d="M512 112c54 0 106.4 10.6 155.7 31.4 47.6 20.1 90.4 49 127.2 85.7 36.7 36.7 65.6 79.5 85.7 127.2C901.4 405.6 912 458 912 512s-10.6 106.4-31.4 155.7c-20.1 47.6-49 90.4-85.7 127.2-36.7 36.7-79.5 65.6-127.2 85.7C618.4 901.4 566 912 512 912s-106.4-10.6-155.7-31.4c-47.6-20.1-90.4-49-127.2-85.7-36.7-36.7-65.6-79.5-85.7-127.2C122.6 618.4 112 566 112 512s10.6-106.4 31.4-155.7c20.1-47.6 49-90.4 85.7-127.2 36.7-36.7 79.5-65.6 127.2-85.7C405.6 122.6 458 112 512 112m0-40C269 72 72 269 72 512s197 440 440 440 440-197 440-440S755 72 512 72zM186.7 215L809 837.3l28.3-28.3L215 186.7 186.7 215z" fill="#d81e06" p-id="2013"></path></svg>
+        <svg
+          t="1586422023576"
+          class="icon"
+          viewBox="0 0 1024 1024"
+          version="1.1"
+          style="width:100%;height:0.6rem;"
+          xmlns="http://www.w3.org/2000/svg"
+          p-id="2012"
+          width="200"
+          height="200"
+        >
+          <path
+            d="M512 112c54 0 106.4 10.6 155.7 31.4 47.6 20.1 90.4 49 127.2 85.7 36.7 36.7 65.6 79.5 85.7 127.2C901.4 405.6 912 458 912 512s-10.6 106.4-31.4 155.7c-20.1 47.6-49 90.4-85.7 127.2-36.7 36.7-79.5 65.6-127.2 85.7C618.4 901.4 566 912 512 912s-106.4-10.6-155.7-31.4c-47.6-20.1-90.4-49-127.2-85.7-36.7-36.7-65.6-79.5-85.7-127.2C122.6 618.4 112 566 112 512s10.6-106.4 31.4-155.7c20.1-47.6 49-90.4 85.7-127.2 36.7-36.7 79.5-65.6 127.2-85.7C405.6 122.6 458 112 512 112m0-40C269 72 72 269 72 512s197 440 440 440 440-197 440-440S755 72 512 72zM186.7 215L809 837.3l28.3-28.3L215 186.7 186.7 215z"
+            fill="#d81e06"
+            p-id="2013"
+          />
+        </svg>
         <p style="font-size:12px;margin-top:0.1rem;color:gray">申请禁用</p>
       </van-grid-item>
     </van-grid>
@@ -122,11 +138,11 @@
         <span></span>推荐
       </h3>
       <van-card
-      v-for="item in shoopList"
-        :price=item.price
-        :desc=item.decs
-        :title=item.title
-        :thumb=item.imgUrl
+        v-for="item in shoopList"
+        :price="item.price"
+        :desc="item.decs"
+        :title="item.title"
+        :thumb="item.imgUrl"
       >
         <template #footer>
           <van-button size="mini">收藏</van-button>
@@ -142,25 +158,25 @@
 export default {
   name: "Home",
   mounted() {
-    this.init()
+    this.init();
   },
   data() {
     return {
       images: [
         "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1586348536582&di=93f3e9a4162d4c781d04d1fd81fa3324&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2Fc%2F5487dacd7489e.jpg",
-        "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1586348556481&di=6858963c0bc5b6fb023e8ef4b11f4710&imgtype=0&src=http%3A%2F%2Fdik.img.kttpdq.com%2Fpic%2F103%2F71778%2F1b68f879af668780.jpg"
+        "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1586348556481&di=6858963c0bc5b6fb023e8ef4b11f4710&imgtype=0&src=http%3A%2F%2Fdik.img.kttpdq.com%2Fpic%2F103%2F71778%2F1b68f879af668780.jpg",
+        "https://car2.autoimg.cn/cardfs/product/g1/M0A/4C/6D/240x180_0_q95_c42_autohomecar__ChsEmVx-qEOAKxNLAAJwygH9Xvs059.jpg"
+      
       ],
       active: 0,
-      shoopList: [
-    ]
+      shoopList: []
     };
   },
   methods: {
     init() {
-      this.$axios
-          .get("http://localhost:8088/api/login/getTjShop").then(res => {
-            this.shoopList = res.data
-          })
+      // this.$axios.get("http://localhost:8088/api/login/getTjShop").then(res => {
+      //   this.shoopList = res.data;
+      // });
     }
   }
 };

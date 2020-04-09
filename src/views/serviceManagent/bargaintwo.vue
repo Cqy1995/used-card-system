@@ -9,18 +9,20 @@
     </van-swipe>
     <van-cell title="基本信息" />
     <van-card
-      tag="A7"
-      price="890000.00"
-      desc="奥迪A7,线条完美"
-      title="奥迪A7"
-      thumb="https://panovr.autoimg.cn/pano/g29/M0B/0E/9F/ChcCSFwlml2AH73bAACSo_o2ZOI427.png"
-      origin-price="1000000.00"
+      tag="911"
+      price="999000.00"
+      desc="保时捷中的经典"
+      title="保时捷911"
+      to="/serviceManagent/bargaintwo"
+      thumb="https://car2.autoimg.cn/cardfs/product/g30/M07/32/3E/240x180_0_q95_c42_autohomecar__ChsEf15yPUGAZ7iBAAbAzCVLDC0035.jpg"
+      origin-price="1200000.00"
     >
       <template #tags>
-        <van-tag plain type="danger">帅气不失动力</van-tag>
+        <van-tag plain type="danger">撩妹神器</van-tag>
+        <van-tag plain type="danger">渣男必备</van-tag>
       </template>
       <template #footer>
-        <van-button size="mini" to="/serviceManagent/bargainone">去砍价</van-button>
+        <van-button size="mini" to="/serviceManagent/bargaintwo">去砍价</van-button>
       </template>
     </van-card>
     <van-field v-model="text" label="姓名" placeholder="请输入姓名" />
@@ -35,9 +37,9 @@ export default {
   data() {
     return {
       images: [
-        "https://panovr.autoimg.cn/pano/g29/M0B/0E/9F/ChcCSFwlml2AH73bAACSo_o2ZOI427.png",
-        "https://panovr.autoimg.cn/pano/g29/M06/0E/9D/ChcCSFwlmleAPRBQAACBqarAdY8112.png",
-        "https://panovr.autoimg.cn/pano/g28/M06/11/49/ChsEfVwlmlKALEgBAACUjDgFnBM395.png"
+        "https://car2.autoimg.cn/cardfs/product/g30/M04/36/59/240x180_0_q95_c42_autohomecar__ChcCSV5yPUCAfXU7AAfOMtmpvkU606.jpg",
+        "https://car2.autoimg.cn/cardfs/product/g30/M05/31/9B/240x180_0_q95_c42_autohomecar__ChsEoF5yPUCAPFO2AAb1rxZ3HSA707.jpg",
+        "https://car3.autoimg.cn/cardfs/product/g30/M00/32/3E/240x180_0_q95_c42_autohomecar__ChsEf15yPT-AQN_wAAdfzyEOArY531.jpg"
       ]
     };
   }

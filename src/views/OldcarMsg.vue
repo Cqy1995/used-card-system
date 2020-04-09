@@ -29,40 +29,44 @@ export default {
       this.tit = "二手车分类管理";
       this.items = [
         {
-          text: "越野车",
+          text: "豪华型",
           children: [
             {
-              text: "吉普车",
+              text: "大型车",
               id: 1
             },
             {
-              text: "林肯",
+              text: "跑车",
               id: 2
             }
           ]
         },
         {
-          text: "商务车",
+          text: "热门车型",
           children: [
             {
-              text: "凯迪拉克",
+              text: "SUV",
               id: 1
             },
             {
-              text: "大众",
+              text: "紧凑型",
+              id: 2
+            },
+            {
+              text: "中型",
               id: 2
             }
           ]
         },
         {
-          text: "客车",
+          text: "小型",
           children: [
             {
-              text: "特斯拉",
+              text: "小型车",
               id: 1
             },
             {
-              text: "大巴",
+              text: "MPV",
               id: 2
             }
           ]
@@ -263,21 +267,19 @@ export default {
     },
 
     onClickItem(event) {
-      console.log(event);
-      this.$router.push("/carlist");
       this.activeId = event.id;
-      this.$router.push("/carlist");
+      this.$router.push(`/carlist?name=${event.text}`);
     },
     init() {
-      this.$axios
-        .get("http://localhost:8088/api/carlist/getcarlist", {
-          params: {
-            typeid: 1
-          }
-        })
-        .then(res => {
-          console.log(res);
-        });
+      // this.$axios
+      //   .get("http://localhost:8088/api/carlist/getcarlist", {
+      //     params: {
+      //       typeid: 1
+      //     }
+      //   })
+      //   .then(res => {
+      //     console.log(res);
+      //   });
     }
   }
 };

@@ -13,15 +13,15 @@
       </div>
     </van-panel>
     <van-cell-group title="投保人信息">
-      <van-field v-model="value" placeholder="投保人姓名" />
-      <van-field v-model="number" type="number" placeholder="身份证号" />
+      <van-field v-model="name" placeholder="投保人姓名" />
+      <van-field v-model="telnumber" type="number" placeholder="身份证号" />
       <van-cell center title="是否有医保">
         <template #right-icon>
           <van-switch v-model="checked" size="24" />
         </template>
       </van-cell>
     </van-cell-group>
-    <van-button type="info">立即投保</van-button>
+    <van-button type="info" @click="litb">立即投保</van-button>
   </div>
 </template>
 <style scoped>
@@ -41,10 +41,20 @@
 export default {
   data() {
     return {
-      value: "",
-      number: Number,
+      name: "",
+      telnumber: "",
       checked: false
     };
+  },
+  methods: {
+    litb() {
+      if (this.name && this.telnumber) {
+        alert("投保成功")
+        this.$router.push("/serviceManagent/insurance");
+      } else {
+        this.$toast("请输入完整信息");
+      }
+    }
   }
 };
 </script>

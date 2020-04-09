@@ -101,14 +101,32 @@ const routes = [{
             title: '通知管理'
         }
     }, {
-        path: '/serviceManagent/bargain',
+        path: '/serviceManagent/bargainlist',
         component: () =>
-            import ('../views/serviceManagent/bargain.vue'),
+            import ('../views/serviceManagent/bargainList.vue'),
         meta: {
             navShow: true,
             title: '砍价模块'
         }
     },
+    {
+        path: '/serviceManagent/bargainone',
+        component: () =>
+            import ('../views/serviceManagent/bargain.vue'),
+        meta: {
+            navShow: true,
+            title: '砍价详情'
+        }
+    },
+    {
+        path: '/serviceManagent/bargaintwo',
+        component: () =>
+            import ('../views/serviceManagent/bargaintwo.vue'),
+        meta: {
+            navShow: true,
+            title: '砍价详情'
+        }
+    }
 
     // {
     //   path: '',
