@@ -15,7 +15,7 @@ export default {
   },
   methods: {
     onClickLeft() {
-      this.$router.push("/");
+      this.$router.push("/home");
     },
     Toyy() {
       if(this.yy==""){

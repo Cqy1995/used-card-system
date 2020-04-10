@@ -10,10 +10,22 @@
         placeholder="请输入用户名"
         bind:click-icon="onClickIcon"
       />
-      <van-field :value="password" v-model="password" type="password" label="密码:" placeholder="请输入密码" />
-      <van-field :value="password1" v-model="password1" type="password" label="确认密码:" placeholder="请确认密码" />
+      <van-field
+        :value="password"
+        v-model="password"
+        type="password"
+        label="密码:"
+        placeholder="请输入密码"
+      />
+      <van-field
+        :value="password1"
+        v-model="password1"
+        type="password"
+        label="确认密码:"
+        placeholder="请确认密码"
+      />
     </van-cell-group>
-    <van-button class="cardBtn" type="default"  @click="regest" size="normal">注册</van-button>
+    <van-button class="cardBtn" type="default" @click="regest" size="normal">注册</van-button>
   </div>
 </template>
 
@@ -35,22 +47,25 @@ export default {
       this.$router.push("/login");
     },
     regest() {
-      let params = {
-            account: this.username,
-            password: this.password
-          };
-      this.$axios
-          .get("http://localhost:8088/api/login/createAccount",
-          {
+      if (this.username == "" || this.password == "") {
+        this.$toast("请输入完整信息");
+      } else {
+        let params = {
+          account: this.username,
+          password: this.password
+        };
+        this.$axios
+          .get("http://localhost:8088/api/login/createAccount", {
             params: {
               account: this.username,
               password: this.password
             }
-          }
-          ).then(res => {
-            console.log(res);
-            this.$router.push("/login")
           })
+          .then(res => {
+            console.log(res);
+            this.$router.push("/login");
+          });
+      }
     }
   }
 };

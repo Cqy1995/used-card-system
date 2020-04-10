@@ -44,8 +44,19 @@ const routes = [{
     },
     {
         path: '/user',
+        name: 'user',
         component: () =>
             import ('../views/User.vue')
+    },
+    {
+        path: '/edituser',
+        component: () =>
+            import ('../views/editUser.vue')
+    },
+    {
+        path: '/usermsg',
+        component: () =>
+            import ('../views/UserMsg.vue')
     },
     {
         path: '/shopcar',
@@ -53,7 +64,8 @@ const routes = [{
             import ('../views/ShoppingCar.vue')
     },
     {
-        path: '/userlist',
+        path: '/userlist/:id',
+        name: 'userlist',
         component: () =>
             import ('../views/userList.vue')
     },

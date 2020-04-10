@@ -6,7 +6,7 @@
         <img v-lazy="image" width="100%" class="homeBanner" />
       </van-swipe-item>
     </van-swipe>
-    <van-grid column-num="2">
+    <van-grid column-num="2" v-show="showTime==true">
       <van-grid-item use-slot :to="{ name: 'oldcar', params: { id: 'a' }}">
         <svg
           t="1585464235749"
@@ -89,6 +89,8 @@
         </svg>
         <p style="font-size:12px;margin-top:0.1rem;color:gray">二手车车辆管理</p>
       </van-grid-item>
+    </van-grid>
+    <van-grid column-num="2" v-show="showTime==false">
       <van-grid-item use-slot to="/yysq">
         <svg
           t="1585465074029"
@@ -110,7 +112,7 @@
             p-id="7950"
           />
         </svg>
-        <p style="font-size:12px;margin-top:0.1rem;color:gray">预约管理</p>
+        <p style="font-size:12px;margin-top:0.1rem;color:gray">预约申请</p>
       </van-grid-item>
       <van-grid-item use-slot to="/sqjy">
         <svg
@@ -154,29 +156,34 @@
 
 <script>
 // @ is an alias to /src
-
+import Cookies from 'js-cookie'
 export default {
   name: "Home",
   mounted() {
     this.init();
+    if(Cookies.get("userId")=="3") {
+      this.showTime=true
+    }else {
+      this.showTime=false
+    }
   },
   data() {
     return {
       images: [
         "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1586348536582&di=93f3e9a4162d4c781d04d1fd81fa3324&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2Fc%2F5487dacd7489e.jpg",
         "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1586348556481&di=6858963c0bc5b6fb023e8ef4b11f4710&imgtype=0&src=http%3A%2F%2Fdik.img.kttpdq.com%2Fpic%2F103%2F71778%2F1b68f879af668780.jpg",
-        "https://car2.autoimg.cn/cardfs/product/g1/M0A/4C/6D/240x180_0_q95_c42_autohomecar__ChsEmVx-qEOAKxNLAAJwygH9Xvs059.jpg"
       
       ],
       active: 0,
-      shoopList: []
+      shoopList: [],
+      showTime: false
     };
   },
   methods: {
     init() {
-      // this.$axios.get("http://localhost:8088/api/login/getTjShop").then(res => {
-      //   this.shoopList = res.data;
-      // });
+      this.$axios.get("http://localhost:8088/api/login/getTjShop").then(res => {
+        this.shoopList = res.data;
+      });
     }
   }
 };

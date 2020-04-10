@@ -31,7 +31,7 @@ export default {
     var abc = getCaption(window.location.href);
     console.log(abc);
 
-    if (abc == "/Login" || abc == "/regester") {
+    if (abc == "/Login" || abc == "/") {
       this.showto = false;
     } else {
       this.showto = true;

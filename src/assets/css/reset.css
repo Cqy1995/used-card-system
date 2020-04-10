@@ -110,5 +110,13 @@ html {
 }
 
 .van-nav-bar .van-icon {
-    color: red !important;
+    color: #ffffff !important;
+}
+
+.van-nav-bar {
+    background: red !important;
+}
+
+.van-nav-bar__title {
+    color: #ffffff !important;
 }

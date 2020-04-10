@@ -1,13 +1,23 @@
 <template>
   <div class="oldcarmsg">
     <van-nav-bar :title="tit" @click-left="onClickLeft" left-arrow />
-    <van-tree-select
+    <van-swipe-cell v-for="(item,index) in items">
+      <van-cell :border="false" :title="item.text" />
+      <template #right>
+        <van-button square type="danger" @click="ToDelete(index)">删除</van-button>
+        <van-button square type="primary" @click="ToEdit(index)">修改</van-button>
+      </template>
+    </van-swipe-cell>
+    <van-dialog v-model="show" title="管理" show-cancel-button :beforeClose="beforeClose">
+      <van-field style="margin:0.5rem auto" v-model="value" placeholder="请输入信息" />
+    </van-dialog>
+    <!-- <van-tree-select
       :items="items"
       :main-active-index="mainActiveIndex"
       :active-id="activeId"
       @click-nav="onClickNav"
       @click-item="onClickItem"
-    />
+    />-->
   </div>
 </template>
 
@@ -18,7 +28,10 @@ export default {
       tit: "",
       items: [],
       mainActiveIndex: 0,
-      activeId: 0
+      activeId: 0,
+      value: "",
+      show: false,
+      showIpt: ""
     };
   },
   mounted() {
@@ -270,6 +283,26 @@ export default {
       this.activeId = event.id;
       this.$router.push(`/carlist?name=${event.text}`);
     },
+    ToDelete(a) {
+      this.items.splice(a, 1);
+    },
+    ToEdit(a) {
+      this.showIpt = a
+      this.show = true;
+      // this.items[a].text = this.value
+    },
+    beforeClose(action, done) {
+      if(this.value=="") {
+         this.$toast("请输入信息")
+         done(false) //不关闭弹框
+      }
+      if(action === 'confirm') {
+        this.items[this.showIpt].text = this.value
+          setTimeout(done, 1000)
+      } else if(action === 'cancel') {
+         done() //关闭
+      }
+    },
     init() {
       // this.$axios
       //   .get("http://localhost:8088/api/carlist/getcarlist", {
@@ -286,4 +319,7 @@ export default {
 </script>
 
 <style>
+.oldcarmsg .van-swipe-cell {
+  font-size: 0;
+}
 </style>

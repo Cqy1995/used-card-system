@@ -1,6 +1,6 @@
 <template>
   <div class="shoppingcar">
-    <van-nav-bar title="购物车" />
+    <van-nav-bar title="购物车"  @click-left="onClickLeft" left-arrow/>
     <van-card
         price="6.79万"
         desc="2016款 蓝标 1.5T自动两驱精英型"
@@ -22,6 +22,11 @@
         thumb="http://img4.imgtn.bdimg.com/it/u=2388327870,2514168806&fm=26&gp=0.jpg"
       >
       </van-card>
+      <van-submit-bar
+  :price="19000000"
+  button-text="提交订单"
+  @submit="onSubmit"
+/>
   </div>
 </template>
 
@@ -34,8 +39,14 @@ export default {
     };
   },
   methods: {
+    onClickLeft(){
+      this.$router.push("/home")
+    },
     showPopup() {
       this.$router.push("/serviceManagent/insuranceDetail");
+    },
+    onSubmit() {
+      this.$router.push("/user")
     }
   }
 };

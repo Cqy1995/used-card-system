@@ -53,7 +53,7 @@ export default {
               this.$toast('登录成功');
               Cookies.set("userId", res.data.id)
               Cookies.set("userName", res.data.nickname)
-              this.$router.push("/")
+              this.$router.push("/home")
             }
             
           })
