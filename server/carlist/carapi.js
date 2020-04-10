@@ -22,7 +22,6 @@ router.get('/api/carlist/createAccount', async(req, res) => {
     models.carModel.insertMany(carList, function(err, result) {
         if (err) {
             res.send(err);
-            console.log("数据添加成功:", result);
         } else {
             res.send(result);
         }

@@ -138,6 +138,16 @@ const routes = [{
             navShow: true,
             title: '砍价详情'
         }
+    },
+    {
+        path: '/adminstration/insuranceClass',
+        component: () =>
+            import ('../views/adminstration/insuranceClass.vue'),
+        name: "adminInsuranceClass",
+        meta: {
+            navShow: false,
+            title: '保险管理'
+        }
     }
 
     // {

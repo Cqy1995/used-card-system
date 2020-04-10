@@ -5,10 +5,8 @@ mongoose.connect('mongodb://localhost:27017/students'); //数据库连接
 const db = mongoose.connection;
 db.on('open', function(err) {
     if (err) {
-        console.log('数据库连接失败');
         throw err;
     }
-    console.log('数据库连接成功')
 })
 
 //定义表用户数据结构

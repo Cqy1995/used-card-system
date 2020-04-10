@@ -19,7 +19,6 @@ router.get('/api/login/createAccount', (req, res) => {
         } else {
             res.send(result);
         }
-        console.log("数据添加成功:", result);
     })
 });
 // 获取已有账号接口
