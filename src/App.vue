@@ -29,7 +29,7 @@ export default {
     }
     var str = " 执法办案流程-立案审批";
     var abc = getCaption(window.location.href);
-    console.log(abc);
+    console.log(abc,"abc");
 
     if (abc == "/Login" || abc == "/") {
       this.showto = false;

@@ -7,7 +7,7 @@ const router = express.Router();
 /************** 创建(create) 读取(get) 更新(update) 删除(delete) **************/
 
 router.get('/api/insurance/getsurance', async(req, res) => {
-    let ret = await models.insuranceModel.find();
+    let ret = await models.insuranceModel.find({ "type": req.query.type });
     res.send(ret);
 });
 router.get('/api/insurance/createsurance', (req, res) => {

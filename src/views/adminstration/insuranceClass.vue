@@ -2,7 +2,7 @@
   <div style="overflow-y: auto;
     margin-bottom: 1.2rem;">
     <van-nav-bar title="保险分类管理" />
-    <van-tabs v-model="active">
+    <van-tabs v-model="active" @change="varttabChange">
       <van-tab title="强制保险"></van-tab>
       <van-tab title="商业保险"></van-tab>
     </van-tabs>
@@ -14,7 +14,14 @@
         :title="item.title"
         class="goods-card"
         thumb="https://img.yzcdn.cn/vant/cat.jpeg"
-      />
+      >
+        <template #tags>
+          <van-tag plain type="danger">{{item.labname}}</van-tag>
+        </template>
+        <template #footer>
+          <van-button size="mini">修改</van-button>
+        </template>
+      </van-card>
       <template #right>
         <van-button
           square
@@ -85,7 +92,11 @@ export default {
     },
     getinsuranceList() {
       this.$axios
-        .get("http://localhost:8088/api/insurance/getsurance")
+        .get("http://localhost:8088/api/insurance/getsurance", {
+          params: {
+            type: +this.active
+          }
+        })
         .then(res => {
           console.log(res, "请求成功");
           if (res.status == 200) {
@@ -107,6 +118,10 @@ export default {
             this.getinsuranceList();
           }
         });
+    },
+    varttabChange(index) {
+      console.log();
+      this.getinsuranceList();
     }
   },
   mounted() {

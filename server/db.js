@@ -29,10 +29,8 @@ userList = [{
     }],
     userModel.insertMany(userList, function(err, result) {
         if (err) {
-            console.log("数据添加失败");
             throw err;
         }
-        console.log("数据添加成功:", result);
     })
     // 首页推荐商品列表
     // 定义商品数据结构
@@ -71,10 +69,8 @@ shopList = [{
     ],
     shopModel.insertMany(shopList, function(err, result) {
         if (err) {
-            console.log("数据添加失败");
             throw err;
         }
-        console.log("数据添加成功:", result);
     })
 module.exports = {
     userModel: userModel,
