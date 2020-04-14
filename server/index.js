@@ -1,10 +1,13 @@
 // 引入编写好的api
 const api = require('./api');
 const carapi = require('./carlist/carapi');
-const insuranceapi = require('./insurance/insuranceapi');
+const insuranceapi = require('./insurance/insuranceapi'); //保险
 const yyapi = require('./yylist/yyapi');
-const shoppcar = require('./shoppingCar/shoppingCarapi')
-    // 引入文件模块
+const shoppcar = require('./shoppingCar/shoppingCarapi');
+const tongzhi = require('./tongzhi/tongzhiapi'); //通知
+const tousu = require('./tousu/tousuapi'); //投诉
+const kanjia = require('./kanjia/kanjiaapi'); //砍价
+// 引入文件模块
 const fs = require('fs');
 // 引入处理路径的模块
 const path = require('path');
@@ -36,9 +39,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(api);
 app.use(carapi);
-app.use(insuranceapi)
-app.use(yyapi)
-app.use(shoppcar)
+app.use(insuranceapi); //保险
+app.use(yyapi);
+app.use(shoppcar);
+app.use(tongzhi); //通知
+app.use(tousu); //投诉
+app.use(kanjia); //砍价
 
 
 // 监听8088端口

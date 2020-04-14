@@ -148,6 +148,36 @@ const routes = [{
             navShow: false,
             title: '保险管理'
         }
+    },
+    {
+        path: '/adminstration/tousu',
+        component: () =>
+            import ('../views/adminstration/tousu.vue'),
+        name: "admintousu",
+        meta: {
+            navShow: false,
+            title: '投诉管理'
+        }
+    },
+    {
+        path: '/adminstration/tongzhi',
+        component: () =>
+            import ('../views/adminstration/tongzhi.vue'),
+        name: "admintongzhi",
+        meta: {
+            navShow: false,
+            title: '通知管理'
+        }
+    },
+    {
+        path: '/adminstration/kanjia',
+        component: () =>
+            import ('../views/adminstration/kanjia.vue'),
+        name: "adminkanjia",
+        meta: {
+            navShow: false,
+            title: '砍价管理'
+        }
     }
 
     // {

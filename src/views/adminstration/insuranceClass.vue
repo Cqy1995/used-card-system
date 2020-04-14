@@ -120,7 +120,6 @@ export default {
         });
     },
     varttabChange(index) {
-      console.log();
       this.getinsuranceList();
     }
   },

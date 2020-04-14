@@ -8,7 +8,6 @@ db.on('open', function(err) {
         console.log('数据库连接失败');
         throw err;
     }
-    console.log('数据库连接成功')
 })
 
 
