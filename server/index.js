@@ -2,7 +2,9 @@
 const api = require('./api');
 const carapi = require('./carlist/carapi');
 const insuranceapi = require('./insurance/insuranceapi');
-// 引入文件模块
+const yyapi = require('./yylist/yyapi');
+const shoppcar = require('./shoppingCar/shoppingCarapi')
+    // 引入文件模块
 const fs = require('fs');
 // 引入处理路径的模块
 const path = require('path');
@@ -35,6 +37,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(api);
 app.use(carapi);
 app.use(insuranceapi)
+app.use(yyapi)
+app.use(shoppcar)
+
 
 // 监听8088端口
 app.listen(8088);

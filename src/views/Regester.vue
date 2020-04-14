@@ -38,6 +38,9 @@ export default {
       password1: ""
     };
   },
+  mounted() {
+    this.$parent.showto = false
+  },
   methods: {
     onChange(event) {
       // event.detail 为当前输入的值

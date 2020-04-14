@@ -25,6 +25,9 @@ export default {
       pass: ""
     };
   },
+  mounted() {
+    this.$parent.showto = false
+  },
   methods: {
     login() {
       // 获取已有账号密码

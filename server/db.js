@@ -36,9 +36,13 @@ userList = [{
     // 定义商品数据结构
 var shopModel = new mongoose.Schema({
     id: Number,
-    title: String,
+    pinpai: String,
+    color: String,
+    year: String,
+    leixing: String,
+    yuanjia: String,
+    xianjia: String,
     decs: String,
-    price: String,
     imgUrl: String
 
 }, {
@@ -47,23 +51,35 @@ var shopModel = new mongoose.Schema({
 var shopModel = mongoose.model("shopList", shopModel, "shopList");
 shopList = [{
             id: 1,
-            title: '哈弗H6',
+            pinpai: '哈弗H6',
+            color: '蓝色',
+            year: "2017/06",
+            leixing: 'SUV',
+            yuanjia: "10.5万",
             decs: '2016款 蓝标 1.5T自动两驱精英型',
-            price: '6.79万',
+            xianjia: '6.79万',
             imgUrl: "http://e.hiphotos.baidu.com/image/h%3D300/sign=cd92f6ddf903738dc14a0a22831ab073/08f790529822720e78606b8774cb0a46f21fab25.jpg"
         },
         {
             id: 2,
-            title: '力帆轩朗',
+            pinpai: '力帆轩朗',
+            color: '棕色',
+            year: "2017/06",
+            leixing: 'SUV',
+            yuanjia: "10.5万",
             decs: '2017款 蓝标 1.5T自动舒适型',
-            price: '5.5万',
+            xianjia: '5.5万',
             imgUrl: "http://img4.imgtn.bdimg.com/it/u=3331455421,259079271&fm=26&gp=0.jpg"
         },
         {
             id: 3,
-            title: '大众夏朗',
+            pinpai: '大众夏朗',
+            color: '白色',
+            year: "2017/06",
+            leixing: 'SUV',
+            yuanjia: "10.5万",
             decs: '2013款 蓝标 1.8TSI标配型',
-            price: '6.6万',
+            xianjia: '6.6万',
             imgUrl: "http://img4.imgtn.bdimg.com/it/u=2388327870,2514168806&fm=26&gp=0.jpg"
         }
     ],

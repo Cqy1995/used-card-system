@@ -141,11 +141,15 @@
       </h3>
       <van-card
         v-for="item in shoopList"
-        :price="item.price"
+        :price="item.xianjia"
         :desc="item.decs"
-        :title="item.title"
+        :title="item.pinpai"
         :thumb="item.imgUrl"
+        :origin-price="item.yuanjia"
       >
+      <template #tags>
+    <van-tag plain type="danger">{{item.color}}</van-tag>
+  </template>
         <template #footer>
           <van-button size="mini">收藏</van-button>
         </template>
@@ -163,9 +167,13 @@ export default {
     this.init();
     if(Cookies.get("userId")=="3") {
       this.showTime=true
+      this.$parent.showCar = false
     }else {
       this.showTime=false
+      this.$parent.showCar = true
     }
+    this.$parent.showto = true
+    
   },
   data() {
     return {

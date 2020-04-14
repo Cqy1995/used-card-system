@@ -1,20 +1,49 @@
 <template>
   <div class="shoppingcar">
     <van-nav-bar title="购物车" @click-left="onClickLeft" left-arrow />
+    <van-contact-card
+  :type="cardType"
+  :name="currentContact.name"
+  :tel="currentContact.tel"
+  @click="showList = true"
+/>
+
+<!-- 联系人列表 -->
+<van-popup v-model="showList" position="bottom">
+  <van-contact-list
+    v-model="chosenContactId"
+    :list="list"
+    @add="onAdd"
+    @edit="onEdit"
+    @select="onSelect"
+  />
+</van-popup>
+
+<!-- 联系人编辑 -->
+<van-popup v-model="showEdit" position="bottom">
+  <van-contact-edit
+    :contact-info="editingContact"
+    :is-edit="isEdit"
+    @save="onSave"
+    @delete="onDelete"
+  />
+</van-popup>
     <van-card
-      v-for="(item,index) in carList"
-      :price="item.price"
-      :desc="item.desc"
-      :title="item.title"
-      :thumb="item.thumb"
-      :key="index"
+     v-show="showTime"
+        :price="shopcarList.xianjia"
+        :desc="shopcarList.decs"
+        :title="shopcarList.pinpai"
+        :thumb="shopcarList.imgUrl"
+        :origin-price="shopcarList.yuanjia"
     >
+    <template #bottom>
+      <van-stepper v-model="values" />
+      </template>
       <template #footer>
-        <van-button size="mini" @click="Toedit(index)">修改</van-button>
-        <van-button size="mini" @click="Todel(index)">删除</van-button>
+        <van-button size="mini" @click="Todel(shopcarList.pinpai)">删除</van-button>
       </template>
     </van-card>
-    <van-submit-bar :price="19000000" button-text="提交订单" @submit="onSubmit" />
+    <van-submit-bar :price="totalPrice" button-text="提交订单" @submit="onSubmit" />
   </div>
 </template>
 
@@ -23,33 +52,88 @@ export default {
   data() {
     return {
       active: 0,
+      values: "",
       value: "",
-      carList: [
+      shopcarList: "",
+      chosenContactId: null,
+      editingContact: {},
+      showList: false,
+      showEdit: false,
+      isEdit: false,
+      list: [
         {
-          price: "6.79万",
-          desc: "2013款 蓝标 1.8TSI标配型",
-          title: "大众夏朗",
-          thumb:
-            "http://img4.imgtn.bdimg.com/it/u=2388327870,2514168806&fm=26&gp=0.jpg"
+          name: '张三',
+          tel: '13000000000',
+          id: 0,
         },
-        {
-          price: "6.79万",
-          desc: "2017款 蓝标 1.5T自动舒适型",
-          title: "力帆轩朗",
-          thumb:
-            "http://img4.imgtn.bdimg.com/it/u=3331455421,259079271&fm=26&gp=0.jpg"
-        },
-        {
-          price: "6.79万",
-          desc: "2016款 蓝标 1.5T自动两驱精英型",
-          title: "哈弗H6",
-          thumb:
-            "http://e.hiphotos.baidu.com/image/h%3D300/sign=cd92f6ddf903738dc14a0a22831ab073/08f790529822720e78606b8774cb0a46f21fab25.jpg"
-        }
-      ]
+      ],
+      totalPrice: "",
+      showTime: true
     };
   },
+  computed: {
+    cardType() {
+      return this.chosenContactId !== null ? 'edit' : 'add';
+    },
+
+    currentContact() {
+      const id = this.chosenContactId;
+      return id !== null ? this.list.filter((item) => item.id === id)[0] : {};
+    },
+  },
+  mounted() {
+    this.init()
+  },
   methods: {
+    init() {
+      this.$axios.get("http://localhost:8088/api/getShopCar").then(res => {
+        this.shopcarList = res.data[0];
+        this.totalPrice = parseFloat(res.data[0].xianjia)*1000000 
+      });
+    },
+    // 添加联系人
+    onAdd() {
+      this.editingContact = { id: this.list.length };
+      this.isEdit = false;
+      this.showEdit = true;
+    },
+
+    // 编辑联系人
+    onEdit(item) {
+      this.isEdit = true;
+      this.showEdit = true;
+      this.editingContact = item;
+    },
+
+    // 选中联系人
+    onSelect() {
+      this.showList = false;
+    },
+
+    // 保存联系人
+    onSave(info) {
+      this.showEdit = false;
+      this.showList = false;
+
+      if (this.isEdit) {
+        this.list = this.list.map((item) =>
+          item.id === info.id ? info : item
+        );
+      } else {
+        this.list.push(info);
+      }
+      this.chosenContactId = info.id;
+    },
+
+    // 删除联系人
+    onDelete(info) {
+      this.showEdit = false;
+      this.list = this.list.filter((item) => item.id !== info.id);
+      if (this.chosenContactId === info.id) {
+        this.chosenContactId = null;
+      }
+      // pinpai
+    },
     onClickLeft() {
       this.$router.push("/home");
     },
@@ -60,7 +144,18 @@ export default {
       this.$toast("改变颜色");
     },
     Todel(a) {
-      this.carList.splice(a, 1);
+      this.$axios
+          .get("http://localhost:8088/api/delShopCar",{
+            params: {
+              pinpai: a
+            }
+          }).then(res => {
+            console.log(res);
+            this.init()
+            this.totalPrice = 0
+            this.showTime = false
+          })
+      // this.carList.splice(a, 1);
     },
     onSubmit() {
       this.$router.push("/user");
