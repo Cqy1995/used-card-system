@@ -19,7 +19,7 @@
           <van-tag plain type="danger">{{item.labname}}</van-tag>
         </template>
         <template #footer>
-          <van-button size="mini">修改</van-button>
+          <van-button size="mini" @click="modify(item)">修改</van-button>
         </template>
       </van-card>
       <template #right>
@@ -47,7 +47,7 @@
         <van-field v-model="insurancenumber" label="数量" type="number" placeholder="请输入数量" />
         <van-field v-model="insuranceprice" label="价钱" type="number" placeholder="请输入价钱" />
       </van-cell-group>
-      <van-button color="red" plain @click="addinsurance">新增保险</van-button>
+      <van-button color="red" plain @click="addinsurance">确定</van-button>
     </van-popup>
   </div>
 </template>
@@ -63,22 +63,42 @@ export default {
       labname: "",
       insurancenumber: 0,
       insuranceprice: 0,
-      datalist: []
+      datalist: [],
+      _id: ""
     };
   },
   methods: {
     showPopup() {
+      this.title = "";
+      this.introduction = "";
+      this.labname = "";
+      this.insurancenumber = "";
+      this.insuranceprice = "";
+      this.type = "";
       this.show = true;
     },
     addinsurance() {
-      let args = {
-        title: this.title,
-        introduction: this.introduction,
-        labname: this.labname,
-        insurancenumber: this.insurancenumber,
-        insuranceprice: this.insuranceprice,
-        type: this.active
-      };
+      let args = {};
+      if (this._id) {
+        args = {
+          title: this.title,
+          introduction: this.introduction,
+          labname: this.labname,
+          insurancenumber: this.insurancenumber,
+          insuranceprice: this.insuranceprice,
+          type: this.active,
+          _id: this._id
+        };
+      } else {
+        args = {
+          title: this.title,
+          introduction: this.introduction,
+          labname: this.labname,
+          insurancenumber: this.insurancenumber,
+          insuranceprice: this.insuranceprice,
+          type: this.active
+        };
+      }
       this.$axios
         .get("http://localhost:8088/api/insurance/createsurance", {
           params: args
@@ -121,6 +141,25 @@ export default {
     },
     varttabChange(index) {
       this.getinsuranceList();
+    },
+    modify(data) {
+      let {
+        title,
+        introduction,
+        labname,
+        insurancenumber,
+        insuranceprice,
+        type,
+        _id
+      } = data;
+      this.title = title;
+      this.introduction = introduction;
+      this.labname = labname;
+      this.insurancenumber = insurancenumber;
+      this.insuranceprice = insuranceprice;
+      this.type = type;
+      this._id = _id;
+      this.show = true;
     }
   },
   mounted() {

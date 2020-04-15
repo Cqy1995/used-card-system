@@ -11,21 +11,45 @@ router.get('/api/insurance/getsurance', async(req, res) => {
     res.send(ret);
 });
 router.get('/api/insurance/createsurance', (req, res) => {
-    let insuranceList = {
-        title: req.query.title,
-        introduction: req.query.introduction, //描述
-        labname: req.query.labname, //标签
-        insurancenumber: req.query.insurancenumber, //保险数量
-        insuranceprice: req.query.insuranceprice, //价钱
-        type: req.query.type //保险类型
-    }
-    models.insuranceModel.insertMany(insuranceList, function(err, result) {
-        if (err) {
-            res.send(err);
-        } else {
-            res.send(result);
+    let insuranceList = {};
+    if (req.query._id) {
+        insuranceList = {
+            title: req.query.title,
+            introduction: req.query.introduction, //描述
+            labname: req.query.labname, //标签
+            insurancenumber: req.query.insurancenumber, //保险数量
+            insuranceprice: req.query.insuranceprice, //价钱
+            type: req.query.type, //保险类型
+            _id: req.query._id
         }
-    })
+
+        models.insuranceModel.update(insuranceList, function(err, result) {
+            if (err) {
+                res.send(err);
+            } else {
+                res.send(result);
+            }
+        })
+    } else {
+        insuranceList = {
+            title: req.query.title,
+            introduction: req.query.introduction, //描述
+            labname: req.query.labname, //标签
+            insurancenumber: req.query.insurancenumber, //保险数量
+            insuranceprice: req.query.insuranceprice, //价钱
+            type: req.query.type //保险类型
+        }
+        models.insuranceModel.insertMany(insuranceList, function(err, result) {
+            if (err) {
+                res.send(err);
+            } else {
+                res.send(result);
+            }
+        })
+    }
+
+
+
 });
 router.get('/api/insurance/deletesurance', (req, res) => {
     models.insuranceModel.remove({ _id: req.query._id })

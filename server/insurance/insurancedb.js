@@ -17,7 +17,7 @@ var insuranceModel = new mongoose.Schema({
     labname: String,
     insurancenumber: Number,
     insuranceprice: Number,
-    type: Number //保险类型0为强险1为商业险
+    type: Number, //保险类型0为强险1为商业险
 }, {
     versionKey: false //去除： - -v
 })
