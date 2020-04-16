@@ -140,18 +140,18 @@
         <span></span>推荐
       </h3>
       <van-card
-        v-for="item in shoopList"
+        v-for="(item,index) in shoopList"
         :price="item.xianjia"
         :desc="item.decs"
         :title="item.pinpai"
         :thumb="item.imgUrl"
         :origin-price="item.yuanjia"
       >
-      <template #tags>
-    <van-tag plain type="danger">{{item.color}}</van-tag>
-  </template>
+        <template #tags>
+          <van-tag plain type="danger">{{item.color}}</van-tag>
+        </template>
         <template #footer>
-          <van-button size="mini">收藏</van-button>
+          <van-button size="mini" class="abc" @click="ToSc(index)">收藏</van-button>
         </template>
       </van-card>
     </div>
@@ -160,27 +160,25 @@
 
 <script>
 // @ is an alias to /src
-import Cookies from 'js-cookie'
+import Cookies from "js-cookie";
 export default {
   name: "Home",
   mounted() {
     this.init();
-    if(Cookies.get("userId")=="3") {
-      this.showTime=true
-      this.$parent.showCar = false
-    }else {
-      this.showTime=false
-      this.$parent.showCar = true
+    if (Cookies.get("userId") == "3") {
+      this.showTime = true;
+      this.$parent.showCar = false;
+    } else {
+      this.showTime = false;
+      this.$parent.showCar = true;
     }
-    this.$parent.showto = true
-    
+    this.$parent.showto = true;
   },
   data() {
     return {
       images: [
         "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1586348536582&di=93f3e9a4162d4c781d04d1fd81fa3324&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2Fc%2F5487dacd7489e.jpg",
-        "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1586348556481&di=6858963c0bc5b6fb023e8ef4b11f4710&imgtype=0&src=http%3A%2F%2Fdik.img.kttpdq.com%2Fpic%2F103%2F71778%2F1b68f879af668780.jpg",
-      
+        "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1586348556481&di=6858963c0bc5b6fb023e8ef4b11f4710&imgtype=0&src=http%3A%2F%2Fdik.img.kttpdq.com%2Fpic%2F103%2F71778%2F1b68f879af668780.jpg"
       ],
       active: 0,
       shoopList: [],
@@ -192,6 +190,18 @@ export default {
       this.$axios.get("http://localhost:8088/api/login/getTjShop").then(res => {
         this.shoopList = res.data;
       });
+    },
+    ToSc(a) {
+      if (
+        document.getElementsByClassName("abc")[a].children[0].innerHTML ==
+        "已收藏"
+      ) {
+        document.getElementsByClassName("abc")[a].children[0].innerHTML =
+          "收藏";
+      } else {
+        document.getElementsByClassName("abc")[a].children[0].innerHTML =
+          "已收藏";
+      }
     }
   }
 };
