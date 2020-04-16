@@ -70,7 +70,7 @@
         </svg>
         <p style="font-size:12px;margin-top:0.1rem;color:gray">二手车颜色管理</p>
       </van-grid-item>
-      <van-grid-item use-slot :to="{ name: 'oldcar', params: { id: 'd' }}">
+      <van-grid-item use-slot :to="{ name: 'addcar'}">
         <svg
           t="1585464712518"
           class="icon"
@@ -87,7 +87,7 @@
             p-id="4785"
           />
         </svg>
-        <p style="font-size:12px;margin-top:0.1rem;color:gray">二手车车辆管理</p>
+        <p style="font-size:12px;margin-top:0.1rem;color:gray">发布车源</p>
       </van-grid-item>
     </van-grid>
     <van-grid column-num="2" v-show="showTime==false">

@@ -183,8 +183,17 @@ const routes = [{
             navShow: false,
             title: '砍价管理'
         }
+    },
+    {
+        path: '/addcar',
+        component: () =>
+            import ('../views/addCar.vue'),
+        name: "addcar",
+        meta: {
+            navShow: false,
+            title: '砍价管理'
+        }
     }
-
     // {
     //   path: '',
     //   // component: Home,

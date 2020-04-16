@@ -14,11 +14,11 @@
         <van-dropdown-item v-model="value2" @change="ToJg" :options="option2" />
       </van-dropdown-menu>
       <van-card
-        v-for="(item,index) in newCarList"
+        v-for="item in newCarList"
         :price="item.xianjia+'万'"
         :desc="item.decs"
         :title="item.pinpai"
-        :thumb="item.imgUrl"
+        :thumb="item.imgUrl ? item.imgUrl : './assets/img/csx.png'"
         :origin-price="item.yuanjia+'万'"
         :key="item._id"
       >
@@ -125,6 +125,9 @@ export default {
 };
 </script>
 <style lang="scss">
+.newcarlist{
+  margin-bottom: 1rem;
+}
 .newcarlist .van-card__content {
   text-align: left;
   margin-left: 0.2rem;
