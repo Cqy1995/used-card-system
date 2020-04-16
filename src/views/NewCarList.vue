@@ -20,6 +20,7 @@
         :title="item.pinpai"
         :thumb="item.imgUrl"
         :origin-price="item.yuanjia+'万'"
+        :key="item._id"
       >
         <template #tags>
           <van-tag plain type="danger">{{item.color}}</van-tag>
