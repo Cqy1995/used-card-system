@@ -43,6 +43,16 @@ const routes = [{
             import ('../views/Yysq.vue')
     },
     {
+        path: '/carsonsoult',
+        component: () =>
+            import ('../views/Carconsoult.vue')
+    },
+    {
+        path: '/toconmsg',
+        component: () =>
+            import ('../views/ToConMsg.vue')
+    },
+    {
         path: '/sqjy',
         component: () =>
             import ('../views/Sqjy.vue')

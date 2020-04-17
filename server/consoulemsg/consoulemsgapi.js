@@ -1,26 +1,23 @@
 // 可能是我的node版本问题，不用严格模式使用ES6语法会报错
 "use strict";
-const models = require('./yydb');
+const models = require('./consoultmsgdb');
 const express = require('express');
 const router = express.Router();
 
 /************** 创建(create) 读取(get) 更新(update) 删除(delete) **************/
 //获取
-router.get('/api/getyy', async(req, res) => {
+router.get('/api/getconsoult', async(req, res) => {
     // 通过模型去查找数据库
-    let ret = await models.yyModel.find();
+    let ret = await models.consoultModel.find();
     res.send(ret);
 });
 
-router.get('/api/yylist/createYy', async(req, res) => {
-    let yylist = [{
+router.get('/api/addconsoult', async(req, res) => {
+    let consoultlist = [{
         id: 1,
-        username: req.query.username,
-        phone: req.query.phone,
-        yytime: req.query.yytime,
-        sqtime: req.query.sqtime
+        consoult: req.query.consoult,
     }]
-    models.yyModel.insertMany(yylist, function(err, result) {
+    models.consoultModel.insertMany(consoultlist, function(err, result) {
         if (err) {
             res.send(err);
         } else {
@@ -29,9 +26,9 @@ router.get('/api/yylist/createYy', async(req, res) => {
 
     })
 });
-// 删除
-router.get('/api/delyy', (req, res) => {
-    models.yyModel.remove({ _id: req.query._id })
+// 删除用户
+router.get('/api/delconsoult', (req, res) => {
+    models.consoultModel.remove({ _id: req.query._id })
         .then((data) => {
             res.send({ err: 0, msg: 'del ok', data: null })
         })
@@ -39,5 +36,4 @@ router.get('/api/delyy', (req, res) => {
             res.send({ err: -1, msg: err._message, data: null })
         })
 })
-
 module.exports = router;

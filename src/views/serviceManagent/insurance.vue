@@ -86,10 +86,12 @@ export default {
         require("../../assets/img/ssx.png"),
         require("../../assets/img/szx.jpg")
       ],
-      datalist: []
+      datalist: [],
+      
     };
   },
   methods: {
+    
     showPopup() {
       this.$router.push("/serviceManagent/insuranceDetail");
     },

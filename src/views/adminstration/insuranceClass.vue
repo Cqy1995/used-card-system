@@ -6,6 +6,13 @@
       <van-tab title="强制保险"></van-tab>
       <van-tab title="商业保险"></van-tab>
     </van-tabs>
+    <van-search
+      v-model="values1"
+      show-action
+      placeholder="请输入搜索关键词"
+      @search="onSearch"
+      @cancel="onCancel"
+    />
     <van-swipe-cell v-for="(item) in datalist" :key="item._id">
       <van-card
         :num="item.insurancenumber"
@@ -64,10 +71,24 @@ export default {
       insurancenumber: 0,
       insuranceprice: 0,
       datalist: [],
-      _id: ""
+      datalist2: [],
+      _id: "",
+      values1: ""
     };
   },
   methods: {
+    onSearch(val) {
+      console.log(this.datalist2.filter(item => item.title == val));
+      if (this.datalist2.filter(item => item.title == val).length == 0) {
+        this.$toast("暂无此数据");
+        this.datalist = [];
+      } else {
+        this.datalist = this.datalist2.filter(item => item.title == val);
+      }
+    },
+    onCancel() {
+      this.$toast("取消");
+    },
     showPopup() {
       this.title = "";
       this.introduction = "";
@@ -121,6 +142,7 @@ export default {
           console.log(res, "请求成功");
           if (res.status == 200) {
             this.datalist = res.data;
+            this.datalist2 = res.data;
           }
         });
     },

@@ -9,7 +9,8 @@ const tongzhi = require('./tongzhi/tongzhiapi'); //通知
 const tousu = require('./tousu/tousuapi'); //投诉
 const kanjia = require('./kanjia/kanjiaapi'); //砍价
 const orderlist = require('./orderList/orderlistapi'); //提交订单
-// 引入文件模块
+const consoult = require('./consoulemsg/consoulemsgapi')
+    // 引入文件模块
 const fs = require('fs');
 // 引入处理路径的模块
 const path = require('path');
@@ -49,7 +50,7 @@ app.use(tousu); //投诉
 app.use(kanjia); //砍价
 app.use(newcarlist); //车辆列表
 app.use(orderlist); //购物车
-// orderlist
+app.use(consoult); //咨询
 // 监听8088端口
 app.listen(8088);
 console.log('success listen…………');

@@ -16,15 +16,31 @@
       <template #label>
         <div>{{item.tscontent}}</div>
         <div>投诉人:{{item.user}}&nbsp;&nbsp;&nbsp;&nbsp;投诉时间:{{item.tstime}}</div>
+        <div class="tousuBox">
+          <van-button type="primary" @click="Toagree">同意</van-button>
+          <van-button type="info" @click="Tojj">拒绝</van-button>
+          <van-button type="info" @click="Todel">删除</van-button>
+          <van-button type="danger" @click="Tohf">回复</van-button>
+        </div>
       </template>
     </van-cell>
+    <van-dialog v-model="show" title="标题" show-cancel-button :showConfirmButton="showbtn">
+      <van-field v-model="username" name="回复" label="回复" placeholder="回复" />
+      <div style="margin: 16px;">
+        <van-button round block type="info" @click="Tosub" native-type="submit">提交</van-button>
+      </div>
+    </van-dialog>
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
-      tousuList: []
+      tousuList: [
+      ],
+      show: false,
+      username: "",
+      showbtn: false
     };
   },
   mounted() {
@@ -33,8 +49,31 @@ export default {
       .then(res => {
         this.tousuList = res.data;
       });
+  },
+  methods: {
+    Toagree() {
+      this.$toast("同意");
+    },
+    Tojj() {
+      this.$toast("已拒绝");
+    },
+    Todel() {
+      this.$toast("已删除");
+    },
+    Tohf() {
+      this.show = true;
+    },
+    Tosub() {
+      this.$toast("回复成功");
+    }
   }
 };
 </script>
-<style>
+<style lang="scss">
+.tousuBox {
+  margin-top: 10px;
+  .van-button {
+    margin-right: 5px;
+  }
+}
 </style>

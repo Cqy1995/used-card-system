@@ -18,7 +18,6 @@
     </van-cell-group>
     <van-cell-group class="userList" v-show="userorGl==false">
       <van-cell title="预约管理" :to="{ name: 'userlist', params: { id: 'h' }}" value="&gt;" />
-      <van-cell title="禁用管理" :to="{ name: 'userlist', params: { id: 'g' }}" value="&gt;" />
       <van-cell title="用户管理" to="/usermsg" value="&gt;" />
     </van-cell-group>
     <van-button class="cardBtn" type="default" size="normal" @click="ToLgoin">退出登录</van-button>
